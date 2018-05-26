@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="~/js/jquery.form.js"></script>
+
+
+
+<script type="text/javascript">
+
+
+
+    //$("#updatereviseform").submit(function () {
+    //    $(this).ajaxSubmit({
+    //        success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
+
+    //            console.log(data);
+    //            if (data.code == 0) {
+    //                alert("提交成功")
+
+    //            } else {
+    //                alert("提交失败")
+    //            }
+    //        }
+    //    });
+    //    return false;
+    //});
+
+
+
+ 
+        $(function () {
+            $("#btn").click(function () {
+                $("#updatereviseform").ajaxSubmit({
+                    url: "~/Upload/Idcard",
+                    type: "post",
+                    success: function (data) {
+                        alert(data);
+                       
+                    }
+                });
+            });
+        })
+
+
+</script>
+<form enctype="multipart/form-data" method="post" action="~/Upload/Idcard" id="updatereviseform">
+    <label>选择身份证：</label>  <input type="file" name="upload"  />
+    <label>是否正面：</label> <input type="checkbox" checked="checked" name="id_card_side" /><br />
+    <input type="button" id="btn" value="上传" />
+
+</form>
+
+<form method="post" enctype="multipart/form-data" asp-controller="Upload" asp-action="Upload">
+    <div class="form-group">
+        <div class="col-md-10">
+            <p>Upload one or more files using this form:</p>
+            <input type="file" name="files" multiple />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="上传" />
+        </div>
+    </div>
+</form>
