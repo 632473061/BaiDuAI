@@ -20,5 +20,17 @@ namespace BaiDuAIHelper
             return result.ToString();
         }
 
+
+        public static string BusinessLicense(byte[] img)
+        {
+            var client = new Baidu.Aip.Ocr.Ocr(API_KEY, SECRET_KEY);
+            client.Timeout = 60000;  // 修改超时时间 
+            var options = new Dictionary<string, object>{
+        {"detect_direction", "true"}
+    };
+            var result = client.BusinessLicense(img,options);
+            return result.ToString();
+        }
+
     }
 }
