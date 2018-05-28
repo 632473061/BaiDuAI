@@ -86,11 +86,14 @@ namespace BaiDuAI.Controllers
             var message = "上传图片耗时：【" + w1.Elapsed.TotalMilliseconds + "】毫秒\r\n";
             if (result.isSucceed)
             {
+                Stopwatch w3 = new Stopwatch();
+                w3.Start();
+                var img = System.IO.File.ReadAllBytes(result.Date.ToString());
+                message += "加载图片耗时：【" + w3.Elapsed.TotalMilliseconds + "】毫秒\r\n";
+                w3.Stop();
                 Stopwatch w2 = new Stopwatch();
                 w2.Start();
-               
-                var img = System.IO.File.ReadAllBytes(result.Date.ToString());
-               var s = BaiDuAIHelper.BaiDuAIHelper.Idcard(img, id_card_sidep);
+                var s = BaiDuAIHelper.BaiDuAIHelper.Idcard(img, id_card_sidep);
                 message += "百度识别图片耗时：【" + w2.Elapsed.TotalMilliseconds + "】毫秒\r\n";
                 message += "接口返回结果：";
                 w2.Stop();
@@ -122,7 +125,12 @@ namespace BaiDuAI.Controllers
             var message = "上传图片耗时：【" + w1.Elapsed.TotalMilliseconds + "】毫秒\r\n";
             if (result.isSucceed)
             {
+                Stopwatch w3 = new Stopwatch();
+                w3.Start();
                 var img = System.IO.File.ReadAllBytes(result.Date.ToString());
+                message += "加载图片耗时：【" + w3.Elapsed.TotalMilliseconds + "】毫秒\r\n";
+                w3.Stop();
+               
                 Stopwatch w2 = new Stopwatch();
                 w2.Start();
                 var s = BaiDuAIHelper.BaiDuAIHelper.BusinessLicense(img);
